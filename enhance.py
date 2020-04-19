@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""                          _              _                           
-  _ __   ___ _   _ _ __ __ _| |   ___ _ __ | |__   __ _ _ __   ___ ___  
- | '_ \ / _ \ | | | '__/ _` | |  / _ \ '_ \| '_ \ / _` | '_ \ / __/ _ \ 
- | | | |  __/ |_| | | | (_| | | |  __/ | | | | | | (_| | | | | (_|  __/ 
- |_| |_|\___|\__,_|_|  \__,_|_|  \___|_| |_|_| |_|\__,_|_| |_|\___\___| 
+"""                          _              _
+  _ __   ___ _   _ _ __ __ _| |   ___ _ __ | |__   __ _ _ __   ___ ___
+ | '_ \ / _ \ | | | '__/ _` | |  / _ \ '_ \| '_ \ / _` | '_ \ / __/ _ \
+ | | | |  __/ |_| | | | (_| | | |  __/ | | | | | | (_| | | | | (_|  __/
+ |_| |_|\___|\__,_|_|  \__,_|_|  \___|_| |_|_| |_|\__,_|_| |_|\___\___|
 
 """
 #
@@ -377,7 +377,7 @@ class Model(object):
         params = {k: [cast(p) for p in l.get_params()] for (k, l) in self.list_generator_layers()}
         config = {k: getattr(args, k) for k in ['generator_blocks', 'generator_residual', 'generator_filters'] + \
                                                ['generator_upscale', 'generator_downscale']}
-        
+
         pickle.dump((config, params), bz2.open(self.get_filename(absolute=True), 'wb'))
         print('  - Saved model as `{}` after training.'.format(self.get_filename()))
 
