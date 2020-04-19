@@ -1,0 +1,26 @@
+name: Neural Enhance GOU Build
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: docker-login
+      env: 
+        DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      run: |
+        docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+        
+    - name: Build the Docker image
+      run:  docker build . --file docker-gpu.df --tag hadenp/neural-enhance:1.0.0
+      
+    - name: Publish the image
+      run: |
+        docker push hadenp/neural-enhance:1.0.0
